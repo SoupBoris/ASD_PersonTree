@@ -28,7 +28,8 @@ class BSTree{
         BSTree(): root(nullptr) {};
 
         void insert(Node persona) {
-            insert(root, *persona);
+            Node* persona_ptr = &persona;
+            insert(root, persona_ptr);
         }
 
         void displayInOrder(){
@@ -52,13 +53,13 @@ class BSTree{
 };
 
 template <typename Node>
-void BSTree<Node>::insert(Node* &node, Node* &persona){
+void BSTree<Node>::insert(Node* &node, Node* &persona_ptr){
     if(node == nullptr)    
-        node = persona;
-    else if(persona.edad < node->edad)
-        insert(node->left, persona);
+        node = persona_ptr;
+    else if(persona_ptr->edad < node->edad)
+        insert(node->left, persona_ptr);
     else 
-        insert(node->right, persona);    
+        insert(node->right, persona_ptr);    
 }
 
 template <typename Node>
