@@ -44,11 +44,15 @@ class BSTree{
             displayPreOrder(root);
         }
 
+        void displayPretty(){
+            displayPretty(Node* root, int indent=0);
+        }
 
         void insert(Node* &root, Node* &persona);
         void displayInOrder(Node* node);
         void displayPostOrder(Node* node);
         void displayPreOrder(Node* node);
+        void displayPretty(Node* node, int indent=0);
 
 };
 
@@ -92,4 +96,15 @@ void BSTree<Node>::displayPreOrder(Node* node){
     
     if(node->right != nullptr)
         displayPreOrder(node->right);            
+}
+
+void BSTree<Node>::displayPretty(Node* node, int indent=0){
+    if(node != nullptr) {
+        if(node->left) postorder(node->left, indent+4);
+        if(node->right) postorder(node->right, indent+4);
+        if (indent) {
+            std::cout << std::setw(indent) << ' ';
+        }
+        cout<< node->edad << " - " << node->nombre << "\n ";
+    }
 }
