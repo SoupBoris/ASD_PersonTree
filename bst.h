@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
 struct Person{
@@ -45,7 +46,8 @@ class BSTree{
         }
 
         void displayPretty(){
-            displayPretty(Node* root, int indent=0);
+            int indent = 0;
+            displayPretty(root, indent);
         }
 
         void insert(Node* &root, Node* &persona);
@@ -98,13 +100,20 @@ void BSTree<Node>::displayPreOrder(Node* node){
         displayPreOrder(node->right);            
 }
 
-void BSTree<Node>::displayPretty(Node* node, int indent=0){
+template <typename Node>
+void BSTree<Node>::displayPretty(Node* node, int indent){
     if(node != nullptr) {
-        if(node->left) postorder(node->left, indent+4);
-        if(node->right) postorder(node->right, indent+4);
+        if(node->right) {
+            displayPretty(node->right, indent+4);
+        }
         if (indent) {
             std::cout << std::setw(indent) << ' ';
         }
-        cout<< node->edad << " - " << node->nombre << "\n ";
+        if (node->right) std::cout<<" /\n" << std::setw(indent) << ' ';
+        cout << node->edad << " - " << node->nombre << "\n ";
+        if(node->left) {
+            std::cout << std::setw(indent) << ' ' <<" \\\n";
+            displayPretty(node->left, indent+4);
+        }
     }
 }
