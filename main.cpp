@@ -23,6 +23,6 @@ int main()
     cout<<"PostOrder-----------------------"<<endl;
     arbolito->displayPostOrder();
     cout<<"Arbolito bonito-----------------"<<endl;
-    //arbolito->displayPretty();
+    arbolito->displayPretty();
     delete arbolito;
 }
